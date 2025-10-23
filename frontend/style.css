@@ -1,0 +1,49 @@
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input, button {
+  margin: 5px;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+#chat {
+  list-style: none;
+  padding: 0;
+}
+
+#chat li {
+  background: white;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chat b {
+  margin-right: 10px;
+}
+
+#chat i {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+#chat button {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>

@@ -1,18 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
 <input id="sender" placeholder="Your name">
 <input id="message" placeholder="Type message">
 <button id="send">Send</button>
 <ul id="chat"></ul>
 <script>
   async function fetchMessages() {
-    const res = await fetch('http://localhost:3000/messages');
-    const msgs = await res.json();
-    chat.innerHTML = msgs.map(m => `<li><b>${m.sender}:</b> ${m.text}</li>`).join('');
-  }
+  const res = await fetch('http://localhost:3000/messages');
+  const msgs = await res.json();
+  chat.innerHTML = msgs.map(m =>
+    `<li>
+      <b>${m.sender}:</b> ${m.text}
+      <i>${m.time ? new Date(m.time).toLocaleString() : ''}</i>
+      <button onclick="deleteMessage(${m.id})">Delete</button>
+     </li>`
+  ).join('');
+}
+
   fetchMessages();
 
   send.onclick = async () => {
-    const senderName = sender.value;
-    const messageText = message.value;
+    const senderName = sender.value.trim();
+    const messageText = message.value.trim();
+
+    //check for empty fields
+    if(!senderName || !messageText){
+      alert("please enter both your name and a message");
+      return;
+    }
     await fetch('http://localhost:3000/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -20,4 +41,19 @@
     });
     fetchMessages();
   };
+
+  async function deleteMessage(id) {
+  // Send a DELETE request to backend
+  await fetch('http://localhost:3000/messages/' + id, {
+    method: 'DELETE'
+  });
+  // Refresh list after deletion
+  fetchMessages();
+}
+
 </script>
+</body>
+</html>
+
+
+
