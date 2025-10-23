@@ -1,0 +1,23 @@
+<input id="sender" placeholder="Your name">
+<input id="message" placeholder="Type message">
+<button id="send">Send</button>
+<ul id="chat"></ul>
+<script>
+  async function fetchMessages() {
+    const res = await fetch('http://localhost:3000/messages');
+    const msgs = await res.json();
+    chat.innerHTML = msgs.map(m => `<li><b>${m.sender}:</b> ${m.text}</li>`).join('');
+  }
+  fetchMessages();
+
+  send.onclick = async () => {
+    const senderName = sender.value;
+    const messageText = message.value;
+    await fetch('http://localhost:3000/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sender: senderName, text: messageText })
+    });
+    fetchMessages();
+  };
+</script>
