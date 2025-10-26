@@ -131,8 +131,10 @@ wss.on('connection', (ws) => {
   });
 });
 
+
 // ===== START SERVER =====
-server.listen(3001, () => {
-  console.log('🚀 WebSocket server running on port 3001');
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+  console.log(`🚀 WebSocket server running on port ${PORT}`);
   console.log('📡 Real-time chat with like/dislike is ready!');
 });
