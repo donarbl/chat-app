@@ -71,7 +71,7 @@
 
     // ===== WEBSOCKET CONNECTION =====
     function connectWebSocket() {
-      ws = new WebSocket('ws://localhost:3001');
+      ws = new WebSocket('wss://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io');
 
       ws.onopen = () => {
         console.log('🟢 Connected to WebSocket server');
@@ -167,7 +167,7 @@
       }
 
       try {
-        const response = await fetch('http://localhost:3001/messages', {
+        const response = await fetch('https://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io/messages', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sender: senderName, text: messageText })
@@ -193,7 +193,7 @@
     async function likeMessage(id) {
       console.log('👍 Liking message:', id);
       try {
-        const response = await fetch(`http://localhost:3001/messages/${id}/like`, {
+        const response = await fetch(`'https://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io/messages'${id}/like`, {
           method: 'POST'
         });
         console.log('👍 Response status:', response.status);
@@ -206,7 +206,7 @@
     async function dislikeMessage(id) {
       console.log('👎 Disliking message:', id);
       try {
-        const response = await fetch(`http://localhost:3001/messages/${id}/dislike`, {
+        const response = await fetch(`'https://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io/messages'/${id}/dislike`, {
           method: 'POST'
         });
         console.log('👎 Response status:', response.status);
@@ -218,7 +218,7 @@
     // ===== DELETE MESSAGE =====
     async function deleteMessage(id) {
       try {
-        const response = await fetch(`http://localhost:3001/messages/${id}`, {
+        const response = await fetch(`'https://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io/messages'${id}`, {
           method: 'DELETE'
         });
         if (response.status === 204) {
