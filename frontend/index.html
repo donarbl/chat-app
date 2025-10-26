@@ -71,7 +71,8 @@
 
     // ===== WEBSOCKET CONNECTION =====
     function connectWebSocket() {
-      ws = new WebSocket('wss://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io');
+     ws = new WebSocket('wss://cc08wwc0kc8ckoggws0g4ss.hosting.codeyourfuture.io');
+
 
       ws.onopen = () => {
         console.log('🟢 Connected to WebSocket server');
